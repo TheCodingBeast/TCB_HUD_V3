@@ -404,9 +404,9 @@ usermessage.Hook("GotArrested", function(msg)
 	local ArrestedUntil = msg:ReadFloat()
 
 	Arrested = function()
-		if CurTime() - StartArrested <= ArrestedUntil and localplayer:getDarkRPVar("Arrested") then
+		if CurTime() - StartArrested <= ArrestedUntil and LocalPlayer():getDarkRPVar("Arrested") then
 		draw.DrawNonParsedText(DarkRP.getPhrase("youre_arrested", math.ceil(ArrestedUntil - (CurTime() - StartArrested))), "DarkRPHUD1", ScrW()/2, ScrH() - ScrH()/12, colors.white, 1)
-		elseif not localplayer:getDarkRPVar("Arrested") then
+		elseif not LocalPlayer():getDarkRPVar("Arrested") then
 			Arrested = function() end
 		end
 	end
@@ -463,7 +463,7 @@ local function DrawWantedInfo(ply)
 	if not ply:Alive() then return end
 
 	local pos = ply:EyePos()
-	if not pos:isInSight({localplayer, ply}) then return end
+	if not pos:isInSight({LocalPlayer(), ply}) then return end
 
 	pos.z = pos.z + 14
 	pos = pos:ToScreen()
